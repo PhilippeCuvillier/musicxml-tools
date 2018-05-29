@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+   stylesheet="../../xslt/transpositionSemitones/transpositionSemitonesPartwise.xsl">
+   
+   <x:scenario label="Part with single note C4 in CM key.">
+      <x:context href="./simple/musicxml31_C4_CM.xml" select="//part[1]"/>
+      <x:call template="transposePart"/>
+      <x:scenario label="Transposition +0 semitones.">
+         <x:call>
+            <x:param name="semitones" select="0"/>
+         </x:call>
+         <x:expect label="Expected part" href="./simple/musicxml31_C4_CM.xml" select="//part[1]"/>
+      </x:scenario>
+      <x:scenario label="Transposition +1 semitones.">
+         <x:call>
+            <x:param name="semitones" select="1"/>
+         </x:call>
+         <x:expect label="Expected fifths" test="//fifths/number() = -5"/>
+         <x:expect label="Expected step" test="//step/text() = 'D'"/>
+         <x:expect label="Expected octave" test="//octave/number() = 4"/>
+         <x:expect label="Expected alter" test="//alter/number() = -1"/>
+      </x:scenario>
+      <x:scenario label="Transposition +7 semitones.">
+         <x:call>
+            <x:param name="semitones" select="7"/>
+         </x:call>
+         <x:expect label="Expected fifths" test="//fifths/number() = 1"/>
+         <x:expect label="Expected step" test="//step/text() = 'G'"/>
+         <x:expect label="Expected octave" test="//octave/number() = 4"/>
+         <x:expect label="Expected alter" test="not(//alter/number())"/>
+      </x:scenario>
+      <x:scenario label="Transposition +13 semitones.">
+         <x:call>
+            <x:param name="semitones" select="13"/>
+         </x:call>
+         <x:expect label="Expected fifths" test="//fifths/number() = -5"/>
+         <x:expect label="Expected step" test="//step/text() = 'D'"/>
+         <x:expect label="Expected octave" test="//octave/number() = 5"/>
+         <x:expect label="Expected alter" test="//alter/number() = -1"/>
+      </x:scenario>
+      <x:scenario label="Transposition +10 semitones.">
+         <x:call>
+            <x:param name="semitones" select="10"/>
+         </x:call>
+         <!--      <x:expect label="Expected fifths" test="//fifths/number() = -5"/>-->
+         <x:expect label="Expected step" test="//step/text() = 'B'"/>
+         <x:expect label="Expected octave" test="//octave/number() = 4"/>
+         <x:expect label="Expected alter" test="//alter/number() = -1"/>
+      </x:scenario>
+      <x:scenario label="Transposition +8 semitones.">
+         <x:call>
+            <x:param name="semitones" select="8"/>
+         </x:call>
+         <x:expect label="Expected part" href="./simple/musicxml31_Ab4_AbM.xml" select="//part[1]"/>
+      </x:scenario>
+      <x:scenario label="Transposition +11 semitones.">
+         <x:call>
+            <x:param name="semitones" select="11"/>
+         </x:call>
+         <x:expect label="Expected part" href="./simple/musicxml31_B4_BM.xml" select="//part[1]"/>
+      </x:scenario>
+   </x:scenario>
+   
+   <x:scenario label="Part with ascending diatonic scale in GbM key (octave 3)">
+      <x:context href="./scales_diatonic/musicxml31_GbM_Gb3-Gb4.xml" select="//part[1]"/>
+      <x:call template="transposePart"/>
+      <x:scenario label="Transposition +12 semitones.">
+         <x:call>
+            <x:param name="semitones" select="12"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_GbM_Gb4-Gb5.xml" select="//part[1]"/>
+      </x:scenario>
+   </x:scenario>
+   
+   <x:scenario label="Part with ascending diatonic scale in GbM key (octave 4)">
+      <x:context href="./scales_diatonic/musicxml31_GbM_Gb4-Gb5.xml" select="//part[1]"/>
+      <x:call template="transposePart"/>
+      <x:scenario label="Transposition -12 semitones.">
+         <x:call>
+            <x:param name="semitones" select="-12"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_GbM_Gb3-Gb4.xml" select="//part[1]"/>
+      </x:scenario>
+      <x:scenario label="Transposition -6 semitones.">
+         <x:call>
+            <x:param name="semitones" select="-6"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_CM_C4-C5.xml" select="//part[1]"/>
+      </x:scenario>
+      <x:scenario label="Transposition -9 semitones.">
+         <x:call>
+            <x:param name="semitones" select="-9"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_AM_A3-A4.xml" select="//part[1]"/>
+      </x:scenario>
+      <x:scenario label="Transposition -2 semitones.">
+         <x:call>
+            <x:param name="semitones" select="-2"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_EM_E4-E5.xml" select="//part[1]"/>
+      </x:scenario>
+   </x:scenario>
+   
+   <x:scenario label="Part with ascending diatonic scale in CM key">
+      <x:context href="./scales_diatonic/musicxml31_CM_C4-C5.xml" select="//part[1]"/>
+      <x:call template="transposePart"/>
+      <x:scenario label="Transposition -3 semitones.">
+         <x:call>
+            <x:param name="semitones" select="-3"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_AM_A3-A4.xml" select="//part[1]"/>
+      </x:scenario>
+      <x:scenario label="Transposition -1 semitones.">
+         <x:call>
+            <x:param name="semitones" select="-1"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_BM_B3-B4.xml" select="//part[1]"/>
+      </x:scenario>
+      <x:scenario label="Transposition 4 semitones.">
+         <x:call>
+            <x:param name="semitones" select="4"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_EM_E4-E5.xml" select="//part[1]"/>
+      </x:scenario>
+      <x:scenario label="Transposition 6 semitones.">
+         <x:call>
+            <x:param name="semitones" select="6"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_GbM_Gb4-Gb5.xml" select="//part[1]"/>
+      </x:scenario>
+   </x:scenario>
+   
+   <x:scenario label="Part with ascending diatonic scale in AM key">
+      <x:context href="./scales_diatonic/musicxml31_AM_A3-A4.xml" select="//part[1]"/>
+      <x:call template="transposePart"/>
+      <x:scenario label="Transposition +3 semitones.">
+         <x:call>
+            <x:param name="semitones" select="3"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_CM_C4-C5.xml" select="//part[1]"/>
+      </x:scenario>
+      <x:scenario label="Transposition +7 semitones.">
+         <x:call>
+            <x:param name="semitones" select="7"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_EM_E4-E5.xml" select="//part[1]"/>
+      </x:scenario>
+      <x:scenario label="Transposition +9 semitones.">
+         <x:call>
+            <x:param name="semitones" select="9"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_GbM_Gb4-Gb5.xml" select="//part[1]"/>
+      </x:scenario>
+   </x:scenario>
+   
+   <x:scenario label="Part with ascending diatonic scale in BM key (octave 3)">
+      <x:context href="./scales_diatonic/musicxml31_BM_B3-B4.xml" select="//part[1]"/>
+      <x:call template="transposePart"/>
+      <x:scenario label="Transposition +12 semitones.">
+         <x:call>
+            <x:param name="semitones" select="12"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_BM_B4-B5.xml" select="//part[1]"/>
+      </x:scenario>
+      <x:scenario label="Transposition 1 semitones.">
+         <x:call>
+            <x:param name="semitones" select="1"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_CM_C4-C5.xml" select="//part[1]"/>
+      </x:scenario>
+   </x:scenario>
+   
+   <x:scenario label="Part with ascending diatonic scale in BM key (octave 4)">
+      <x:context href="./scales_diatonic/musicxml31_BM_B4-B5.xml" select="//part[1]"/>
+      <x:call template="transposePart"/>
+      <x:scenario label="Transposition -12 semitones.">
+         <x:call>
+            <x:param name="semitones" select="-12"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_BM_B3-B4.xml" select="//part[1]"/>
+      </x:scenario>
+   </x:scenario>
+   
+   <x:scenario label="Part with ascending diatonic scale in EM key">
+      <x:context href="./scales_diatonic/musicxml31_EM_E4-E5.xml" select="//part[1]"/>
+      <x:call template="transposePart"/>
+      <x:scenario label="Transposition -4 semitones.">
+         <x:call>
+            <x:param name="semitones" select="-4"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_CM_C4-C5.xml" select="//part[1]"/>
+      </x:scenario>
+      <x:scenario label="Transposition -7 semitones.">
+         <x:call>
+            <x:param name="semitones" select="-7"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_AM_A3-A4.xml" select="//part[1]"/>
+      </x:scenario>
+      <x:scenario label="Transposition +2 semitones.">
+         <x:call>
+            <x:param name="semitones" select="2"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_GbM_Gb4-Gb5.xml" select="//part[1]"/>
+      </x:scenario>
+   </x:scenario>
+   
+   <!--
+      Score with key changes
+   -->
+   <x:scenario label="Part with ascending diatonic scales in GbM, BM, CM keys">
+      <x:context href="./scales_other/musicxml31_BM_GbM_CM.xml" select="//part[1]"/>
+      <x:call template="transposePart"/>
+      <x:scenario label="Transposition -3 semitones.">
+         <x:call>
+            <x:param name="semitones" select="-3"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_other/musicxml31_AbM_EbM_AM.xml" select="//part[1]"/>
+      </x:scenario>
+   </x:scenario>
+   <x:scenario label="Part with ascending diatonic scales in AbM, EbM, AM keys">
+      <x:context href="./scales_other/musicxml31_AbM_EbM_AM.xml" select="//part[1]"/>
+      <x:call template="transposePart"/>
+      <x:scenario label="Transposition +3 semitones.">
+         <x:call>
+            <x:param name="semitones" select="3"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_other/musicxml31_BM_GbM_CM.xml" select="//part[1]"/>
+      </x:scenario>
+   </x:scenario>
+   
+   
+<!--   <x:scenario label="Single note Abb3">
+      <x:context href="./simple/musicxml31_Abb3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Bbb3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Bbb3">
+      <x:context href="./simple/musicxml31_Bbb3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Cbb3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Cbb3">
+      <x:context href="./simple/musicxml31_Cbb3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Dbb3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Dbb3">
+      <x:context href="./simple/musicxml31_Dbb3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Ebb3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Ebb3">
+      <x:context href="./simple/musicxml31_Ebb3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Fbb3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Fbb3">
+      <x:context href="./simple/musicxml31_Fbb3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Gbb3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Gbb3">
+      <x:context href="./simple/musicxml31_Gbb3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Abb3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Ab3">
+      <x:context href="./simple/musicxml31_Ab3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Bb3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Bb3">
+      <x:context href="./simple/musicxml31_Bb3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Cb3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Cb3">
+      <x:context href="./simple/musicxml31_Cb3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Db3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Db3">
+      <x:context href="./simple/musicxml31_Db3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Db3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Eb3">
+      <x:context href="./simple/musicxml31_Eb3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Eb3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Fb3">
+      <x:context href="./simple/musicxml31_Fb3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Fb3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Gb3">
+      <x:context href="./simple/musicxml31_Gb3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Gb3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note A3">
+      <x:context href="./simple/musicxml31_A3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_A3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note B3">
+      <x:context href="./simple/musicxml31_B3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_B3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note C3">
+      <x:context href="./simple/musicxml31_C3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_C3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note D3">
+      <x:context href="./simple/musicxml31_D3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_D3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note E3">
+      <x:context href="./simple/musicxml31_E3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_E3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note F3">
+      <x:context href="./simple/musicxml31_F3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_F3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note G3">
+      <x:context href="./simple/musicxml31_G3_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_G3_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note A#3">
+      <x:context href="./simple/musicxml31_A%233_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_A%233_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note B#3">
+      <x:context href="./simple/musicxml31_B%233_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_B%233_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note C#3">
+      <x:context href="./simple/musicxml31_C%233_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_C%233_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note D#3">
+      <x:context href="./simple/musicxml31_D%233_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_D%233_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note E#3">
+      <x:context href="./simple/musicxml31_E%233_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_E%233_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note F#3">
+      <x:context href="./simple/musicxml31_F%233_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_F%233_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note G#3">
+      <x:context href="./simple/musicxml31_G%233_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_G%233_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note A##3">
+      <x:context href="./simple/musicxml31_A%23%233_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_A%23%233_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note B##3">
+      <x:context href="./simple/musicxml31_B%23%233_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_B%23%233_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note C##3">
+      <x:context href="./simple/musicxml31_C%23%233_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_C%23%233_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note D##3">
+      <x:context href="./simple/musicxml31_D%23%233_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_D%23%233_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note E##3">
+      <x:context href="./simple/musicxml31_E%23%233_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_E%23%233_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note F##3">
+      <x:context href="./simple/musicxml31_F%23%233_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_F%23%233_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note G##3">
+      <x:context href="./simple/musicxml31_G%23%233_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_G%23%233_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Abb4">
+      <x:context href="./simple/musicxml31_Abb4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Abb4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Bbb4">
+      <x:context href="./simple/musicxml31_Bbb4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Bbb4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Cbb4">
+      <x:context href="./simple/musicxml31_Cbb4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Cbb4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Dbb4">
+      <x:context href="./simple/musicxml31_Dbb4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Dbb4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Ebb4">
+      <x:context href="./simple/musicxml31_Ebb4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Ebb4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Fbb4">
+      <x:context href="./simple/musicxml31_Fbb4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Fbb4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Gbb4">
+      <x:context href="./simple/musicxml31_Gbb4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Gbb4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Ab4">
+      <x:context href="./simple/musicxml31_Ab4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Ab4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Bb4">
+      <x:context href="./simple/musicxml31_Bb4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Bb4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Cb4">
+      <x:context href="./simple/musicxml31_Cb4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Cb4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Db4">
+      <x:context href="./simple/musicxml31_Db4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Db4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Eb4">
+      <x:context href="./simple/musicxml31_Eb4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Eb4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Fb4">
+      <x:context href="./simple/musicxml31_Fb4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Fb4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Gb4">
+      <x:context href="./simple/musicxml31_Gb4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Gb4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note A4">
+      <x:context href="./simple/musicxml31_A4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_A4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note B4">
+      <x:context href="./simple/musicxml31_B4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_B4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note C4">
+      <x:context href="./simple/musicxml31_C4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_C4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note D4">
+      <x:context href="./simple/musicxml31_D4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_D4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note E4">
+      <x:context href="./simple/musicxml31_E4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_E4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note F4">
+      <x:context href="./simple/musicxml31_F4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_F4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note G4">
+      <x:context href="./simple/musicxml31_G4_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_G4_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note A#4">
+      <x:context href="./simple/musicxml31_A%234_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_A%234_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note B#4">
+      <x:context href="./simple/musicxml31_B%234_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_B%234_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note C#4">
+      <x:context href="./simple/musicxml31_C%234_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_C%234_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note D#4">
+      <x:context href="./simple/musicxml31_D%234_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_D%234_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note E#4">
+      <x:context href="./simple/musicxml31_E%234_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_E%234_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note F#4">
+      <x:context href="./simple/musicxml31_F%234_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_F%234_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note G#4">
+      <x:context href="./simple/musicxml31_G%234_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_G%234_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note A##4">
+      <x:context href="./simple/musicxml31_A%23%234_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_A%23%234_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note B##4">
+      <x:context href="./simple/musicxml31_B%23%234_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_B%23%234_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note C##4">
+      <x:context href="./simple/musicxml31_C%23%234_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_C%23%234_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note D##4">
+      <x:context href="./simple/musicxml31_D%23%234_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_D%23%234_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note E##4">
+      <x:context href="./simple/musicxml31_E%23%234_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_E%23%234_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note F##4">
+      <x:context href="./simple/musicxml31_F%23%234_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_F%23%234_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note G##4">
+      <x:context href="./simple/musicxml31_G%23%234_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_G%23%234_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Abb5">
+      <x:context href="./simple/musicxml31_Abb5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Abb5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Bbb5">
+      <x:context href="./simple/musicxml31_Bbb5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Bbb5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Cbb5">
+      <x:context href="./simple/musicxml31_Cbb5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Cbb5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Dbb5">
+      <x:context href="./simple/musicxml31_Dbb5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Dbb5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Ebb5">
+      <x:context href="./simple/musicxml31_Ebb5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Ebb5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Fbb5">
+      <x:context href="./simple/musicxml31_Fbb5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Fbb5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Gbb5">
+      <x:context href="./simple/musicxml31_Gbb5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Gbb5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Ab5">
+      <x:context href="./simple/musicxml31_Ab5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Ab5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Bb5">
+      <x:context href="./simple/musicxml31_Bb5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Bb5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Cb5">
+      <x:context href="./simple/musicxml31_Cb5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Cb5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Db5">
+      <x:context href="./simple/musicxml31_Db5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Db5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Eb5">
+      <x:context href="./simple/musicxml31_Eb5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Eb5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Fb5">
+      <x:context href="./simple/musicxml31_Fb5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Fb5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note Gb5">
+      <x:context href="./simple/musicxml31_Gb5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_Gb5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note A5">
+      <x:context href="./simple/musicxml31_A5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_A5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note B5">
+      <x:context href="./simple/musicxml31_B5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_B5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note C5">
+      <x:context href="./simple/musicxml31_C5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_C5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note D5">
+      <x:context href="./simple/musicxml31_D5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_D5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note E5">
+      <x:context href="./simple/musicxml31_E5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_E5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note F5">
+      <x:context href="./simple/musicxml31_F5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_F5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note G5">
+      <x:context href="./simple/musicxml31_G5_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_G5_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note A#5">
+      <x:context href="./simple/musicxml31_A%235_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_A%235_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note B#5">
+      <x:context href="./simple/musicxml31_B%235_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_B%235_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note C#5">
+      <x:context href="./simple/musicxml31_C%235_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_C%235_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note D#5">
+      <x:context href="./simple/musicxml31_D%235_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_D%235_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note E#5">
+      <x:context href="./simple/musicxml31_E%235_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_E%235_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note F#5">
+      <x:context href="./simple/musicxml31_F%235_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_F%235_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note G#5">
+      <x:context href="./simple/musicxml31_G%235_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_G%235_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note A##5">
+      <x:context href="./simple/musicxml31_A%23%235_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_A%23%235_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note B##5">
+      <x:context href="./simple/musicxml31_B%23%235_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_B%23%235_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note C##5">
+      <x:context href="./simple/musicxml31_C%23%235_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_C%23%235_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note D##5">
+      <x:context href="./simple/musicxml31_D%23%235_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_D%23%235_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note E##5">
+      <x:context href="./simple/musicxml31_E%23%235_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_E%23%235_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note F##5">
+      <x:context href="./simple/musicxml31_F%23%235_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_F%23%235_CM.xml"/>
+   </x:scenario>
+   <x:scenario label="Single note G##5">
+      <x:context href="./simple/musicxml31_G%23%235_CM.xml"/>
+      <x:expect label="Expected XML" test="." href="./simple/musicxml31_G%23%235_CM.xml"/>
+   </x:scenario>-->
+</x:description>
