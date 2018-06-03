@@ -35,9 +35,9 @@
       attribute, element, comment, and processing instruction
       to the output
    -->
-   <xsl:template match="@*|comment()|processing-instruction()|node()">
+   <xsl:template match="@*|node()">
       <xsl:copy>
-         <xsl:apply-templates select="@*|comment()|processing-instruction()|node()"/>
+         <xsl:apply-templates select="@*|node()"/>
       </xsl:copy>
    </xsl:template>
    
