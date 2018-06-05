@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+   stylesheet="../../xslt/changeClef/changeClefAllButLastPart.xsl">
+   <x:param name="sign" select="'F'"/>
+   <x:param name="line" select="4"/>
+   <x:scenario label="Simple MusicXML">
+      <x:context href="simple_musicxml31.xml"/>
+      <x:expect label="Expected XML" test="."
+         href="./simple_musicxml31_F4key.xml"
+      />
+   </x:scenario>
+   <x:scenario label="2-parts score with ascending diatonic scale in AM key (octave 3) and CM key (octave 4)">
+      <x:context
+         href="./musicxml31_AM_A3-A4+CM_C4-C5.xml"
+      />
+      <x:expect label="Expected XML" test="."
+         href="./musicxml31_AM_A3-A4_F4key+CM_C4-C5.xml"
+      />
+   </x:scenario>
+</x:description>
