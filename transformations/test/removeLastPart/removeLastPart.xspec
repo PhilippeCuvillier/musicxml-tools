@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+   stylesheet="../../xslt/removeLastPart/removeLastPart.xsl">
+   
+   <x:scenario label="Score with ascending diatonic scale in AM key (octave 3).">
+      <x:context
+         href="./musicxml31_AM_A3-A4.xml"
+      />
+      <x:expect label="Expected XML" test="."
+         href="./musicxml31_AM_A3-A4.xml"
+      />
+   </x:scenario>
+   <x:scenario label="2-parts score with ascending diatonic scale in AM key (octave 3) with bass clef and CM key (octave 4)">
+      <x:context
+         href="./musicxml31_AM_A3-A4+CM_C4-C5.xml"
+      />
+      <x:expect label="Expected XML" test="."
+         href="./musicxml31_AM_A3-A4.xml"
+      />
+   </x:scenario>
+</x:description>
