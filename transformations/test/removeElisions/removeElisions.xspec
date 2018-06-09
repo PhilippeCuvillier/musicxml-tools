@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+   stylesheet="../../xslt/removeElisions/removeElisions.xsl"
+   >
+   <x:scenario label="Sample score with two elisions">
+      <x:context
+         href="two_elisions.xml"
+      />
+      <x:expect label="Expected XML" test="."
+         href="two_elisions+removeElisions.xml"
+      />
+   </x:scenario>
+   <x:scenario label="Real-world score with three elisions (Fauré, Gabriel – Clair de lune)">
+      <x:context
+         href="Faur%C3%A9%20%E2%80%93%20Clair%20de%20lune.xml"
+      />
+      <x:expect label="Expected XML" test="."
+         href="Faur%C3%A9%20%E2%80%93%20Clair%20de%20lune+removeElisions.xml"
+      />
+   </x:scenario>
+</x:description>
