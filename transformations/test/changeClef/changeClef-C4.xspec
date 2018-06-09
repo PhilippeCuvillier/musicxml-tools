@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+   stylesheet="../../xslt/changeClef/changeClef.xsl">
+   <x:param name="sign" select="'C'"/>
+   <x:param name="line" select="4"/>
+   <x:scenario label="Simple MusicXML (to C4 clef)">
+      <x:context href="simple_musicxml31.xml"/>
+      <x:expect label="Expected XML" test="."
+         href="simple_musicxml31-C4.xml"
+      />
+   </x:scenario>
+   <x:scenario label="Excerpt of real-world 3-staved score (Haydn, Joseph – Cello concerto in C – III. Allegro molto)">
+      <x:context href="Haydn,%20Joseph%20%E2%80%93%20Cello%20concerto%20in%20C%20%E2%80%93%20III.%20Allegro%20molto%20%E2%80%93%20sample.xml"/>
+      <x:expect label="Expected XML" test="."
+         href="Haydn,%20Joseph%20%E2%80%93%20Cello%20concerto%20in%20C%20%E2%80%93%20III.%20Allegro%20molto%20%E2%80%93%20sample+changeClef-C4.xml"
+      />
+   </x:scenario>
+   <x:scenario label="Modified excerpt of real-world 3-staved score (Haydn, Joseph – Cello concerto in C – III. Allegro molto)">
+      <x:context href="Haydn,%20Joseph%20%E2%80%93%20Cello%20concerto%20in%20C%20%E2%80%93%20III.%20Allegro%20molto%20%E2%80%93%20sample+changeClef.xml"/>
+      <x:expect label="Expected XML" test="."
+         href="Haydn,%20Joseph%20%E2%80%93%20Cello%20concerto%20in%20C%20%E2%80%93%20III.%20Allegro%20molto%20%E2%80%93%20sample+changeClef-C4.xml"
+      />
+   </x:scenario>
+</x:description>
