@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" 
+   stylesheet="../../xslt/transpositionOctaves/transpositionOctavesAllButLastPart.xsl">
+   
+   <x:scenario label="Part with ascending diatonic scale in BM key (octave 3)">
+      <x:context href="./scales_diatonic/musicxml31_BM_B3-B4.xml" select="//part[1]"/>
+      <x:call template="transposePart"/>
+      <x:scenario label="Transposition +12 semitones.">
+         <x:call>
+            <x:param name="semitones" select="12"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_BM_B4-B5.xml" select="//part[1]"/>
+      </x:scenario>
+      <x:scenario label="Transposition 1 semitones.">
+         <x:call>
+            <x:param name="semitones" select="1"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_diatonic/musicxml31_CM_C4-C5.xml" select="//part[1]"/>
+      </x:scenario>
+   </x:scenario>
+   
+</x:description>

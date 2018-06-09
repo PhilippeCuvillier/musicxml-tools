@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" 
+   stylesheet="../../xslt/transpositionOctaves/transpositionOctavesAllButLastPart.xsl">
+   <x:param name="octaves" select="1"/>
+   
+   <x:scenario label="Part with ascending diatonic scale in BM key (octave 3)">
+      <x:context
+         href="../transpositionSemitones/scales_diatonic/musicxml31_BM_B3-B4.xml"/>
+      <x:expect label="Expected XML" test="."
+         href="../transpositionSemitones/scales_diatonic/musicxml31_BM_B4-B5.xml"/>
+   </x:scenario>
+   <x:scenario label="2-parts score with ascending diatonic scale in AM key (octave 3) and CM key (octave 3)">
+      <x:context
+         href="../transpositionSemitones/scales_diatonic_2-staves/musicxml31_CM_C3-C4+AM_A3-A4.xml"/>
+      <x:expect label="Expected XML" test="."
+         href="../transpositionSemitones/scales_diatonic_2-staves/musicxml31_CM_C4-C5+AM_A3-A4.xml"/>
+   </x:scenario>
+</x:description>

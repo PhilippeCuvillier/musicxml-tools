@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+   stylesheet="../../xslt/transpositionSemitones/transpositionSemitonesPartwise.xsl">
+   <!--
+      Unit tests on 'semitoneToFifth' template
+   -->
+   <x:scenario label="Semitones to fifth conversion">
+      <x:call template="semitoneToFifth"/>
+      <!-- positive values -->
+      <x:scenario label="with semitones: 0">
+         <x:call>
+            <x:param name="semitones" select="0"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test=". * 7 mod 12 = 0"/>
+      </x:scenario>
+      <x:scenario label="with semitones: 1">
+         <x:call>
+            <x:param name="semitones" select="1"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 + . )* 7 mod 12 = 1"/>
+      </x:scenario>
+      <x:scenario label="with semitones: 2">
+         <x:call>
+            <x:param name="semitones" select="2"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 + . )* 7 mod 12 = 2"/>
+      </x:scenario>
+      <x:scenario label="with semitones: 3">
+         <x:call>
+            <x:param name="semitones" select="3"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 + . )* 7 mod 12 = 3"/>
+      </x:scenario>
+      <x:scenario label="with semitones: 4">
+         <x:call>
+            <x:param name="semitones" select="4"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 + . )* 7 mod 12 = 4"/>
+      </x:scenario>
+      <x:scenario label="with semitones: 5">
+         <x:call>
+            <x:param name="semitones" select="5"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 + . )* 7 mod 12 = 5"/>
+      </x:scenario>
+      <x:scenario label="with semitones: 6">
+         <x:call>
+            <x:param name="semitones" select="6"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 + . )* 7 mod 12 = 6"/>
+      </x:scenario>
+      <x:scenario label="with semitones: 7">
+         <x:call>
+            <x:param name="semitones" select="7"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 + . )* 7 mod 12 = 7"/>
+      </x:scenario>
+      <x:scenario label="with semitones: 8">
+         <x:call>
+            <x:param name="semitones" select="8"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 + . )* 7 mod 12 = 8"/>
+      </x:scenario>
+      <x:scenario label="with semitones: 9">
+         <x:call>
+            <x:param name="semitones" select="9"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 + . )* 7 mod 12 = 9"/>
+      </x:scenario>
+      <x:scenario label="with semitones: 10">
+         <x:call>
+            <x:param name="semitones" select="10"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 + . )* 7 mod 12 = 10"/>
+      </x:scenario>
+      <x:scenario label="with semitones: 11">
+         <x:call>
+            <x:param name="semitones" select="11"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 + . )* 7 mod 12 = 11"/>
+      </x:scenario>
+      <!-- negative values -->
+      <x:scenario label="with semitones: -0">
+         <x:call>
+            <x:param name="semitones" select="-0"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test=". = 0"/>
+      </x:scenario>
+      <x:scenario label="with semitones: -1">
+         <x:call>
+            <x:param name="semitones" select="-1"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 - . )* 7 mod 12 = 1"/>
+      </x:scenario>
+      <x:scenario label="with semitones: -2">
+         <x:call>
+            <x:param name="semitones" select="-2"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 - . )* 7 mod 12 = 2"/>
+      </x:scenario>
+      <x:scenario label="with semitones: -3">
+         <x:call>
+            <x:param name="semitones" select="-3"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 - . )* 7 mod 12 = 3"/>
+      </x:scenario>
+      <x:scenario label="with semitones: -4">
+         <x:call>
+            <x:param name="semitones" select="-4"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 - . )* 7 mod 12 = 4"/>
+      </x:scenario>
+      <x:scenario label="with semitones: -5">
+         <x:call>
+            <x:param name="semitones" select="-5"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 - . )* 7 mod 12 = 5"/>
+      </x:scenario>
+      <x:scenario label="with semitones: -6">
+         <x:call>
+            <x:param name="semitones" select="-6"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 - . )* 7 mod 12 = 6"/>
+      </x:scenario>
+      <x:scenario label="with semitones: -7">
+         <x:call>
+            <x:param name="semitones" select="-7"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 - . )* 7 mod 12 = 7"/>
+      </x:scenario>
+      <x:scenario label="with semitones: -8">
+         <x:call>
+            <x:param name="semitones" select="-8"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 - . )* 7 mod 12 = 8"/>
+      </x:scenario>
+      <x:scenario label="with semitones: -9">
+         <x:call>
+            <x:param name="semitones" select="-9"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 - . )* 7 mod 12 = 9"/>
+      </x:scenario>
+      <x:scenario label="with semitones: -10">
+         <x:call>
+            <x:param name="semitones" select="-10"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 - . )* 7 mod 12 = 10"/>
+      </x:scenario>
+      <x:scenario label="with semitones: -11">
+         <x:call>
+            <x:param name="semitones" select="-11"/>
+         </x:call>
+         <x:expect label="Expected value is congruent" test="(12 - . )* 7 mod 12 = 11"/>
+      </x:scenario>
+   </x:scenario>
+   
+</x:description>

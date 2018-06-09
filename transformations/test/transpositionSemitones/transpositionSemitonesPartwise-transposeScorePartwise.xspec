@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec"
+   stylesheet="../../xslt/transpositionSemitones/transpositionSemitonesPartwise.xsl">
+   
+   <!--
+      One-part score, with key changes.
+   -->
+   <x:scenario label="Part with ascending diatonic scales in BM, GbM, CM keys">
+      <x:context select="//score-partwise" 
+         href="scales_other/musicxml31_BM_GbM_CM.xml"/>
+      <x:call template="transposeScorePartwise"/>
+      <x:scenario label="Transposition -3 and +3 semitones">
+         <x:call>
+            <x:param name="semitonesSolo" select="-3"/>
+            <x:param name="semitonesAcc" select="3"/>
+         </x:call>
+         <x:expect label="Expected parts" select="//score-partwise" 
+            href="scales_other/musicxml31_AbM_EbM_AM.xml"/>
+      </x:scenario>
+      <x:scenario label="Transposition -3 and 0 semitones">
+         <x:call>
+            <x:param name="semitonesSolo" select="-3"/>
+            <x:param name="semitonesAcc" select="0"/>
+         </x:call>
+         <x:expect label="Expected parts" select="//score-partwise" 
+            href="scales_other/musicxml31_AbM_EbM_AM.xml"/>
+      </x:scenario>
+   </x:scenario>
+   
+<!--   <x:scenario label="Part with ascending diatonic scales in AbM, EbM, AM keys">
+      <x:context href="./scales_other/musicxml31_AbM_EbM_AM.xml" select="//part[1]"/>
+      <x:call template="transposePart"/>
+      <x:scenario label="Transposition +3 semitones.">
+         <x:call>
+            <x:param name="semitones" select="3"/>
+         </x:call>
+         <x:expect label="Expected part" href="./scales_other/musicxml31_BM_GbM_CM.xml" select="//part[1]"/>
+      </x:scenario>
+   </x:scenario>-->
+   
+   <!--
+      Two-part scores
+   -->
+   <x:scenario label="2-parts score with ascending diatonic scale in CM key (octave 4) and AM key (octave 3) ">
+      <x:context href="scales_diatonic_2-staves/musicxml31_CM_C4-C5+AM_A3-A4.xml" select="//score-partwise"/>
+      <x:call template="transposeScorePartwise"/>
+      <x:scenario label="Transposition -3 and +3 semitones">
+         <x:call>
+            <x:param name="semitonesSolo" select="-3"/>
+            <x:param name="semitonesAcc" select="3"/>
+         </x:call>
+         <x:expect label="Expected parts" href="scales_diatonic_2-staves/musicxml31_AM_A3-A4+CM_C4-C5.xml" select="//score-partwise"/>
+      </x:scenario>
+   </x:scenario>
+   
+   <x:scenario label="2-parts score with ascending diatonic scale in AM key (octave 4) and CM key (octave 3)">
+      <x:context href="scales_diatonic_2-staves/musicxml31_AM_A3-A4+CM_C4-C5.xml" select="//score-partwise"/>
+      <x:call template="transposeScorePartwise"/>
+      <x:scenario label="Transposition +3 and -3 semitones">
+         <x:call>
+            <x:param name="semitonesSolo" select="3"/>
+            <x:param name="semitonesAcc" select="-3"/>
+         </x:call>
+         <x:expect label="Expected parts" href="scales_diatonic_2-staves/musicxml31_CM_C4-C5+AM_A3-A4.xml" select="//score-partwise"/>
+      </x:scenario>
+   </x:scenario>
+</x:description>
