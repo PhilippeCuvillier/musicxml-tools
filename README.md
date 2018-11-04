@@ -33,4 +33,4 @@ Some stylesheets requires a few EXSL functions. These have their name suffixed b
 
 Other transformations aim at alleviating bugs in some MusicXML imports, by removing special cases that are.
 
-* `removeElisions`: replace all elisions, _i.e._, multiple `<lyric>` elements for the same note) by a single `<lyric>` element.
+* `removeElisions`: replace all elisions, _i.e._, multiple `<syllabic>` elements inside the `<lyric>` for a note, by a single `<syllabic>` element.
