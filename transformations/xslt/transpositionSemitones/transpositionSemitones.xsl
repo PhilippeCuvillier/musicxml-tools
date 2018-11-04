@@ -2,25 +2,27 @@
 
 <!--
    Replace all clef of the score by another one (default is treble clef).
-   
+
    All <clef> elements are removed, except the first clef of each staff of each first measure of each part.
-   An assumption is made on the score: this operation assumes that the first measure of each part 
+   An assumption is made on the score: this operation assumes that the first measure of each part
    contains a <clef> for each staff of the part.
    Note that 'additional' clefs will be removed (e.g. clefs for cues). This might be an un-desired behavior in some cases.
+
+   IMPORTANT: this file is not a standalone. It imports auxiliary XML files. Search for document() calls inside this file.
 -->
 <xsl:stylesheet
    version="1.0"
    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
    xmlns:exslt="http://exslt.org/common"
    extension-element-prefixes="exslt">
-   
+
    <!--
       XML output, with a DOCTYPE refering the partwise DTD.
    -->
    <xsl:output method="xml" indent="yes" encoding="UTF-8" omit-xml-declaration="no" standalone="no"
       doctype-system="http://www.musicxml.org/dtds/partwise.dtd"
       doctype-public="-//Recordare//DTD MusicXML 3.1 Partwise//EN"/>
-   
+
    <!--
       Input parameters
    -->
@@ -28,7 +30,7 @@
       Transposition in semitones.
    -->
    <xsl:param name="semitones" select="1"/>
-  
+
    <!--
       Identity template that will copy every
       attribute, element, comment, and processing instruction
@@ -39,9 +41,9 @@
          <xsl:apply-templates select="@*|comment()|processing-instruction()|node()"/>
       </xsl:copy>
    </xsl:template>
-   
+
    <!-- MAIN OPERATION -->
-   <!-- 
+   <!--
       Translate semitones into fifths offset + octave offset
    -->
    <xsl:variable name="fifths">
@@ -50,16 +52,16 @@
       </xsl:call-template>
    </xsl:variable>
    <xsl:variable name="octave-offset-base" select="floor($semitones div 12) + ($semitones &lt; 0)"/>
-   
+
    <!--
       Retrieve key signature of each <measure> element.
 
       This assumes the measures contains only one <key> element.
    -->
    <xsl:template match="measure">
-      <!-- 
+      <!--
          Preliminary: compute transposition offset on the fifths cycle.
-         
+
          This involves choosing the right enharmonic key.
          Current rule relies on current key signature: if > 5 sharps or > 6 flats, then
          switch to the enharmonic key.
@@ -81,7 +83,7 @@
             </xsl:otherwise>
          </xsl:choose>
       </xsl:variable>
-      
+
       <!--
          Recurse on children with fifths offset as parameter
       -->
@@ -91,11 +93,11 @@
          </xsl:apply-templates>
       </xsl:copy>
    </xsl:template>
-   
-  
+
+
    <!--
       Step 1. a) Change all <key> elements
-      
+
       This involves changing the <fifths> and the <cancel> children.
    -->
    <xsl:template match="attributes/key[fifths]">
@@ -106,7 +108,7 @@
          <xsl:if test="$fifths-previous">
             <xsl:variable name="fifths-unwrapped" select="$fifths-previous + $fifths"/>
             <xsl:if test="$fifths-unwrapped != 0">
-               <cancel>       
+               <cancel>
                   <xsl:choose>
                      <xsl:when test="$fifths-unwrapped &gt; 5">
                         <xsl:value-of select="$fifths-unwrapped - 12"/>
@@ -125,7 +127,7 @@
          <xsl:apply-templates select="@*|*[not(local-name() = 'cancel')]"/>
       </xsl:copy>
    </xsl:template>
-   
+
    <!--
       Change all <fifths> element
    -->
@@ -150,7 +152,7 @@
          <xsl:value-of select="$fifths-wrapped"/>
       </xsl:copy>
    </xsl:template>
-   
+
    <!--
       Step 2. Change all <note> elements that have a <pitch> child
    -->
@@ -182,18 +184,18 @@
          </xsl:apply-templates>
       </xsl:copy>
    </xsl:template>
-   
+
    <!--
       Step 2. b) Change <pitch> element
    -->
    <xsl:template match="pitch">
       <xsl:param name="fifthsCycleIndex"/>
-      <xsl:param name="transposedPitchFifthsCycleIndex"/> 
+      <xsl:param name="transposedPitchFifthsCycleIndex"/>
       <!--
          <pitch>
       -->
       <xsl:copy>
-         <!-- 
+         <!--
             Copy all attributes
          -->
          <xsl:apply-templates select="@*|comment()|processing-instruction()"/>
@@ -230,7 +232,7 @@
          </octave>
       </xsl:copy>
    </xsl:template>
-   
+
    <!--
       Step 2. c) Change <accidental> element
    -->
@@ -246,7 +248,7 @@
          <xsl:value-of select="$accidentalsMusicXml/accidental[1+floor(($transposedPitchFifthsCycleIndex - 1) div 7)]"/>
       </xsl:copy>
    </xsl:template>
-   
+
    <!-- UTILITIES -->
    <!--
       Convert pitch to its index in the 'fifthsCycle' array.
@@ -255,7 +257,7 @@
    <xsl:template name="getFifthsCycleIndex">
       <xsl:param name="step"/>
       <xsl:param name="alter" select="0"/>
-      
+
       <!-- translate 'step' as base index -->
       <xsl:variable name="step-index">
          <xsl:choose>
@@ -282,29 +284,29 @@
             </xsl:otherwise>
          </xsl:choose>
       </xsl:variable>
-      
+
       <!-- translate 'alter' as offset index-->
       <xsl:number value="$step-index + ($alter + 2)*7"/>
    </xsl:template>
-   
+
    <!--
-      Array of pitches sorted by fifths cycle from Fbb to B## 
-   -->   
+      Array of pitches sorted by fifths cycle from Fbb to B##
+   -->
    <xsl:variable name="fifthsCycle" select="document('fifthsCycle.xml')/fifthsCycle"/>
-   
+
    <!--
       Array of MusicXML <accidentals> elements
    -->
    <xsl:variable name="accidentalsMusicXml" select="document('accidentalsMusicXml.xml')/accidentals"/>
-   
+
    <!--
       Convert semitones into fifths
    -->
    <xsl:template name="semitoneToFifth">
       <xsl:param name="semitones"/>
-      
+
       <xsl:variable name="semitones-abs" select="$semitones * (1 - 2*($semitones &lt; 0))"/>
-      
+
       <xsl:variable name="fifths-abs">
          <xsl:choose>
             <xsl:when test="$semitones-abs = 1">
@@ -345,7 +347,7 @@
             </xsl:otherwise>
          </xsl:choose>
       </xsl:variable>
-      
+
       <xsl:value-of select="(1-2*($semitones &lt; 0)) * $fifths-abs"/>
    </xsl:template>
 </xsl:stylesheet>
